@@ -7,7 +7,7 @@
 
 ## 📖 在线阅读
 
-**[点击这里阅读完整文档](https://MrRRRabbit.gitbook.io/interview-handbook)**
+**[点击这里阅读完整文档](https://mrrrrabbit.gitbook.io/interview-handbook/)**
 
 ## 📚 已完成内容
 
