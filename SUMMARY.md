@@ -7,6 +7,12 @@
 ## 并发编程
 
 * [LMAX Disruptor](concurrent/disruptor.md)
+  * [核心原理](concurrent/disruptor.md#核心原理)
+  * [RingBuffer 设计](concurrent/disruptor.md#ringbuffer-设计)
+  * [无锁实现](concurrent/disruptor.md#无锁实现)
+  * [性能优化](concurrent/disruptor.md#性能优化)
+  * [使用场景](concurrent/disruptor.md#使用场景)
+  * [面试要点](concurrent/disruptor.md#面试要点)
 
 ## 分布式系统
 
