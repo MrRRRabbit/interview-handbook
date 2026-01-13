@@ -666,7 +666,7 @@ SELECT * FROM t WHERE c = 10 FOR UPDATE;
 
 **加锁结果**：
 - c 索引：
-  - (5, 10] 的临键锁
+  - 10 的记录锁
   - (10, 15) 的间隙锁
 - 主键索引：
   - id = 10 的记录锁
@@ -682,10 +682,20 @@ BEGIN;
 SELECT * FROM t WHERE c = 10 FOR UPDATE;
 
 -- 会话 B
-INSERT INTO t VALUES (8, 10, 10);  -- ⏳ 阻塞（间隙锁 (5, 10)）
-INSERT INTO t VALUES (12, 10, 10); -- ⏳ 阻塞（间隙锁 (10, 15)）
-UPDATE t SET d = 100 WHERE id = 10; -- ⏳ 阻塞（主键记录锁）
-UPDATE t SET d = 100 WHERE c = 10;  -- ⏳ 阻塞
+-- INSERT 测试
+INSERT INTO t VALUES (8, 10, 10);   -- ⏳ 阻塞 (c=10被锁)
+INSERT INTO t VALUES (8, 5, 5);     -- ✅ 成功 (c=5不在锁范围)
+INSERT INTO t VALUES (12, 10, 10);  -- ⏳ 阻塞 (c=10被锁)
+INSERT INTO t VALUES (12, 11, 11);  -- ⏳ 阻塞 (间隙锁 (c=10, c=15))
+INSERT INTO t VALUES (12, 14, 14);  -- ⏳ 阻塞 (间隙锁 (c=10, c=15))
+INSERT INTO t VALUES (12, 15, 15);  -- ✅ 成功 (c=15是右边界,不在间隙内)
+INSERT INTO t VALUES (12, 20, 20);  -- ✅ 成功 (c=20不在锁范围)
+
+-- UPDATE 测试
+UPDATE t SET d = 100 WHERE id = 10; -- ⏳ 阻塞 (主键id=10被锁)
+UPDATE t SET d = 100 WHERE id = 8;  -- ✅ 成功 (id=8没被锁)
+UPDATE t SET d = 100 WHERE c = 10;  -- ⏳ 阻塞 (二级索引c=10被锁)
+UPDATE t SET d = 100 WHERE c = 15;  -- ✅ 成功 (c=15没被直接锁)
 ```
 
 ### 场景 5：非唯一索引范围查询
