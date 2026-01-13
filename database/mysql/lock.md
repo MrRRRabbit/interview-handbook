@@ -623,12 +623,12 @@ SELECT * FROM t WHERE id >= 10 AND id < 15 FOR UPDATE;
 **加锁分析**：
 1. 查询使用主键索引
 2. 范围查询，扫描 id = 10, 15
-3. 对扫描到的记录加 Next-Key Lock
+3. 对扫描到的记录加 Record Lock 及 Gap Lock
 
 **加锁结果**：
 - 主键索引：
-  - (5, 10] 的临键锁
-  - (10, 15] 的临键锁
+  - 10 的记录锁
+  - (10, 15) 的间隙锁
 
 **验证**：
 ```sql
@@ -637,11 +637,18 @@ BEGIN;
 SELECT * FROM t WHERE id >= 10 AND id < 15 FOR UPDATE;
 
 -- 会话 B
-INSERT INTO t VALUES (8, 8, 8);   -- ⏳ 阻塞（间隙锁 (5, 10)）
-INSERT INTO t VALUES (12, 12, 12); -- ⏳ 阻塞（间隙锁 (10, 15)）
-UPDATE t SET d = 100 WHERE id = 10; -- ⏳ 阻塞（记录锁）
-UPDATE t SET d = 100 WHERE id = 15; -- ⏳ 阻塞（记录锁）
-UPDATE t SET d = 100 WHERE id = 20; -- ✅ 成功
+INSERT INTO t VALUES (8, 8, 8);     -- ✅ 成功 (不在锁定范围)
+INSERT INTO t VALUES (9, 9, 9);     -- ✅ 成功 (不在锁定范围)
+INSERT INTO t VALUES (10, 10, 10);  -- ⏳ 阻塞 (记录锁:id=10已存在)
+INSERT INTO t VALUES (11, 11, 11);  -- ⏳ 阻塞 (间隙锁:(10,15))
+INSERT INTO t VALUES (12, 12, 12);  -- ⏳ 阻塞 (间隙锁:(10,15))
+INSERT INTO t VALUES (14, 14, 14);  -- ⏳ 阻塞 (间隙锁:(10,15))
+INSERT INTO t VALUES (15, 15, 15);  -- ✅ 成功 (15是边界,不在间隙内)
+INSERT INTO t VALUES (20, 20, 20);  -- ✅ 成功 (不在锁定范围)
+
+UPDATE t SET d = 100 WHERE id = 10; -- ⏳ 阻塞 (记录锁)
+UPDATE t SET d = 100 WHERE id = 15; -- ✅ 成功 (15没被锁)
+UPDATE t SET d = 100 WHERE id = 20; -- ✅ 成功 (20没被锁)
 ```
 
 ### 场景 4：非唯一索引等值查询
