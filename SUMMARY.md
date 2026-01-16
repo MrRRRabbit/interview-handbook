@@ -44,6 +44,12 @@
 ## 消息队列
 
 * [知识体系大纲](mq/README.md)
+* [Kafka 核心原理](mq/kafka/README.md)
+  * [架构与核心概念](mq/kafka/architecture.md)
+  * [生产者](mq/kafka/producer.md)
+  * [消费者](mq/kafka/consumer.md)
+  * [存储机制](mq/kafka/storage.md)
+  * [高可用与可靠性](mq/kafka/reliability.md)
 
 ## 系统设计
 
