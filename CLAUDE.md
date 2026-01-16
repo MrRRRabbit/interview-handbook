@@ -64,6 +64,8 @@ Each detailed topic document should include:
 - Common pitfalls
 - References
 
+**注意**: 不要在文档中手动添加目录（如 `## 📚 目录`），GitBook 会自动生成导航。
+
 ### Adding New Content
 
 1. Create markdown file in appropriate directory
