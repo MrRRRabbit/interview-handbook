@@ -23,27 +23,33 @@ if [ ! -d ".git" ]; then
     exit 1
 fi
 
-# 检查是否有未提交的更改
-if [ -z "$(git status --porcelain)" ]; then
-    echo "ℹ️  没有需要提交的更改"
+# 检查是否有未提交的更改或未推送的提交
+HAS_CHANGES=$(git status --porcelain)
+HAS_UNPUSHED=$(git log @{u}..HEAD 2>/dev/null)
+
+if [ -z "$HAS_CHANGES" ] && [ -z "$HAS_UNPUSHED" ]; then
+    echo "ℹ️  没有需要提交或推送的更改"
     exit 0
 fi
 
-echo "📝 准备提交更改..."
+# 如果有未提交的更改，执行 add + commit
+if [ -n "$HAS_CHANGES" ]; then
+    echo "📝 准备提交更改..."
 
-# 显示将要提交的文件
-echo ""
-echo "将要提交的文件:"
-git status --short
-echo ""
+    # 显示将要提交的文件
+    echo ""
+    echo "将要提交的文件:"
+    git status --short
+    echo ""
 
-# 添加所有更改
-echo "📦 添加文件到暂存区..."
-git add .
+    # 添加所有更改
+    echo "📦 添加文件到暂存区..."
+    git add .
 
-# 提交
-echo "💾 提交更改..."
-git commit -m "$COMMIT_MSG"
+    # 提交
+    echo "💾 提交更改..."
+    git commit -m "$COMMIT_MSG"
+fi
 
 # 推送
 echo "🚀 推送到 GitHub..."
