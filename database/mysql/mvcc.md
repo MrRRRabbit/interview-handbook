@@ -2,19 +2,6 @@
 
 > MVCC（Multi-Version Concurrency Control，多版本并发控制）是 MySQL 实现高并发的核心机制。
 
-## 📚 目录
-
-- [MVCC 基本概念](#mvcc-基本概念)
-- [MVCC 的三大组件](#mvcc-的三大组件)
-- [Read View 详解](#read-view-详解)
-- [可见性判断算法](#可见性判断算法)
-- [RC 和 RR 的 MVCC 区别](#rc-和-rr-的-mvcc-区别)
-- [MVCC 完整示例](#mvcc-完整示例)
-- [MVCC 的局限性](#mvcc-的局限性)
-- [面试高频问题](#面试高频问题)
-
----
-
 ## MVCC 基本概念
 
 ### 什么是 MVCC？
