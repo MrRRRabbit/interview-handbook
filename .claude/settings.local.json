@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\n完成分布式系统模块全部文档\n\n- theory.md: 扩充至566行，添加FLP定理、拜占庭问题、向量时钟等\n- consensus.md: 扩充至1049行，添加Paxos案例、Raft详解、ZAB恢复流程等\n- storage.md: 扩充至1005行，添加一致性哈希实现、LSM Tree详解、Dynamo原理等\n- microservices.md: 扩充至1225行，添加Service Mesh、Istio、限流算法代码等\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
+    ]
+  }
+}
