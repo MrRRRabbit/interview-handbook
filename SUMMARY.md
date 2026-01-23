@@ -40,6 +40,10 @@
 ## 分布式系统
 
 * [知识体系大纲](distributed/README.md)
+  * [基础理论](distributed/theory.md)
+  * [一致性算法](distributed/consensus.md)
+  * [分布式存储](distributed/storage.md)
+  * [服务治理与微服务](distributed/microservices.md)
 
 ## 消息队列
 
