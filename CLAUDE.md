@@ -19,6 +19,10 @@ gitbook build
 ./publish.sh "commit message"
 ```
 
+### 提交工作流
+1. 完成修改后，先向用户确认修改内容
+2. 用户确认后，使用 `./publish.sh "message"` 一步完成推送
+
 ## Architecture
 
 ### Content Structure
