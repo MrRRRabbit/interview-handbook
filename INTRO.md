@@ -34,6 +34,13 @@
 - 并发容器源码分析
 - 性能优化与最佳实践
 
+### JVM
+- JVM 内存模型与内存区域
+- 垃圾回收机制（CMS、G1、ZGC）
+- 类加载机制与双亲委派
+- 字节码与 JIT 编译优化
+- JVM 调优与故障排查
+
 ### 分布式系统
 - CAP 理论与一致性
 - Raft/Paxos 一致性算法
@@ -80,6 +87,7 @@
 
 ### 📝 学习路线
 - [并发编程学习路线](concurrent/README.md)
+- [JVM 学习路线](jvm/README.md)
 - [分布式系统学习路线](distributed/README.md)
 - [消息队列学习路线](mq/README.md)
 - [数据库学习路线](database/README.md)
