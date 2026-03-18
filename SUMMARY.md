@@ -48,11 +48,11 @@
 ## JVM
 
 * [知识体系大纲](jvm/README.md)
-  * [内存模型与内存区域](jvm/memory.md)
-  * [垃圾回收机制](jvm/gc.md)
-  * [类加载机制](jvm/class-loading.md)
-  * [字节码与执行引擎](jvm/bytecode.md)
-  * [调优实战](jvm/tuning.md)
+* [内存模型与内存区域](jvm/memory.md)
+* [垃圾回收机制](jvm/gc.md)
+* [类加载机制](jvm/class-loading.md)
+* [字节码与执行引擎](jvm/bytecode.md)
+* [调优实战](jvm/tuning.md)
 
 ## 消息队列
 
