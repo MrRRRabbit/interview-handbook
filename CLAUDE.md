@@ -75,3 +75,36 @@ Each detailed topic document should include:
 1. Create markdown file in appropriate directory
 2. Add entry to `SUMMARY.md` to include in navigation
 3. Commit and push - GitBook syncs automatically
+
+## gstack
+
+Use the `/browse` skill from gstack for all web browsing. Never use `mcp__claude-in-chrome__*` tools.
+
+Available skills:
+- `/office-hours` - Brainstorm new ideas
+- `/plan-ceo-review` - Review a plan (strategy)
+- `/plan-eng-review` - Review a plan (architecture)
+- `/plan-design-review` - Review a plan (design)
+- `/design-consultation` - Create a design system
+- `/review` - Code review before merge
+- `/ship` - Ready to deploy / create PR
+- `/land-and-deploy` - Land and deploy changes
+- `/canary` - Canary deployment
+- `/benchmark` - Run benchmarks
+- `/browse` - Web browsing (always use this)
+- `/qa` - Test the app
+- `/qa-only` - QA testing only
+- `/design-review` - Visual design audit
+- `/setup-browser-cookies` - Set up browser cookies
+- `/setup-deploy` - Set up deployment
+- `/retro` - Weekly retrospective
+- `/investigate` - Debug errors
+- `/document-release` - Post-ship doc updates
+- `/codex` - Second opinion / adversarial code review
+- `/cso` - Chief Security Officer review
+- `/autoplan` - Auto-review a plan (all reviews at once)
+- `/careful` - Working with production or live systems
+- `/freeze` - Scope edits to one module/directory
+- `/guard` - Maximum safety mode
+- `/unfreeze` - Remove edit restrictions
+- `/gstack-upgrade` - Upgrade gstack to latest version
